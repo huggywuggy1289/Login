@@ -1,6 +1,6 @@
 package com.ultimate.ultimate1.services;
 
-import com.ultimate.ultimate1.model.Product;
+import com.ultimate.ultimate1.model.LoginProcessor;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -8,13 +8,13 @@ import java.util.List;
 
 @Service
 public class ProductService {
-    private List<Product> products = new ArrayList<>();
+    private List<LoginProcessor> products = new ArrayList<>();
 
-    public void addProduct(Product p){
+    public void addProduct(LoginProcessor p){
         products.add(p);
     }
 
-    public List<Product> findAll(){
+    public List<LoginProcessor> findAll(){
         return products;
     }
 }
