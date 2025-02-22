@@ -1,24 +1,36 @@
 package com.ultimate.ultimate1.model;
 
+import com.ultimate.ultimate1.services.LoggedUserManagementService;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.annotation.RequestScope;
 
-@Component // 스프링에 이 클래스가 빈이라고 지정하려고 스테레오타입 에너테이션을 사용한다
-@RequestScope // 요청스코프
+
+@Component
+@RequestScope
 public class LoginProcessor {
+
+    private final LoggedUserManagementService loggedUserManagementService;
+
     private String username;
     private String password;
 
-    public boolean login(){
+    public LoginProcessor(LoggedUserManagementService loggedUserManagementService) {
+        this.loggedUserManagementService = loggedUserManagementService;
+    }
+
+    public boolean login() {
         String username = this.getUsername();
         String password = this.getPassword();
 
-        if("natalie".equals(username) && "password".equals(password)){ // 아이디값과 비번을 모델에 저장
-            return true;
-        }else{
-            return false;
+        boolean loginResult = false;
+        if ("natalie".equals(username) && "password".equals(password)) {
+            loginResult = true;
+            loggedUserManagementService.setUsername(username);
         }
+
+        return loginResult;
     }
+
     public String getUsername() {
         return username;
     }
